@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sun Son Solar</title>
+
     <style>
         body { 
             background: linear-gradient(0deg, #ffd56b, #ff9a56, #ff6f91);
@@ -14,6 +15,7 @@
             min-height: 100vh;
             margin: 0;
         }
+
         .solar-panel {
             width: 100%;
             min-height: 350px;
@@ -22,7 +24,7 @@
               linear-gradient(
                 rgba(0,0,0,0.25),
                 rgba(0,0,0,0.25)
-            ), url("panelbg.png");
+              ), url("panelbg.png");
 
             background-size: cover;
             background-position: center;
@@ -32,6 +34,7 @@
             justify-content: center;
             align-items: center;
         }
+
         .main-title {
             text-align: center;
             margin: 0;
@@ -40,24 +43,31 @@
             font-family: 'Times New Roman', Times, serif;
             text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
         }
+
         .sun {
             color: red;
         }
+
         .son {
             color: orange;
         }
+
         .solar {
             color: yellow;
         }
+
         .data-box {
             background: linear-gradient(135deg, #ff6a00, #ee0979);
             padding: 35px 40px;
             border-radius: 16px;
             width: 600px;
+
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             border: 1px solid rgba(255, 255, 255, 0.15);
+
             font-family: tahoma, sans-serif;
             text-align: left;
+
             margin-top: 40px;
             margin-bottom: 40px;
 
@@ -65,6 +75,7 @@
             grid-template-columns: 1fr 1fr;
             gap: 0 16px;
         }
+
         .box-heading {
             margin: 0 0 25px 0;
             font-size: 1.8rem;
@@ -73,159 +84,344 @@
             text-align: center;
             grid-column: 1 / -1;
         }
+
         .input-field {
             display: block;
             width: 100%;
             box-sizing: border-box;
+
             padding: 10px 12px;
             margin-bottom: 12px;
+
             border: none;
             border-radius: 6px;
+
             background-color: #fff8f0;
             color: #333;
+
             font-family: tahoma, sans-serif;
             font-size: 0.95rem;
         }
+
         .input-field:focus {
             outline: 2px solid #ff9a56;
         }
+
         .full-width {
             grid-column: 1 / -1;
         }
+
         .design-button {
             height: 48px;
+
             background-color: #fdfd96;
             border-radius: 8px;
+
             margin-top: 25px;
+
             box-shadow: 0 4px 15px rgba(255, 69, 0, 0.4);
+
             display: flex;
             justify-content: center;
             align-items: center;
+
             color: #000000;
             font-weight: bold;
             font-size: 1.1rem;
             letter-spacing: 0.5px;
+
             grid-column: 1 / -1;
+
             cursor: pointer;
             transition: 0.3s;
-
         }
+
+        .design-button:hover {
+            background-color: #ffffb0;
+            transform: translateY(-2px);
+        }
+
         .design-footer-text {
             text-align: center;
             color: #000000;
             font-size: 0.85rem;
+
             margin-top: 20px;
+
             cursor: pointer;
             transition: color 0.2s;
+
             grid-column: 1 / -1;
         }
+
         .design-footer-text:hover {
             color: rgb(255,243,136);
             text-decoration: underline;
         }
 
         @media (max-width: 700px) {
-            .main-title { font-size: 4rem;}
-            .solar-panel{ min-height: 280px;}
+
+            .main-title {
+                font-size: 4rem;
+            }
+
+            .solar-panel {
+                min-height: 280px;
+            }
+
             .data-box {
                 width: 85%;
                 padding: 30px 25px;
                 grid-template-columns: 1fr;
             }
-            .full-width{grid-column: 1;}
-            .box-heading,.design-button,.design-footer-text {grid-column: 1;}
+
+            .full-width {
+                grid-column: 1;
+            }
+
+            .box-heading,
+            .design-button,
+            .design-footer-text {
+                grid-column: 1;
+            }
         }
     </style>
 </head>
+
 <body>
+
     <div class="solar-panel">
-            <h1 class="main-title">
+
+        <h1 class="main-title">
             <span class="sun">SUN</span>
             <span class="son">SON</span>
             <span class="solar">SOLAR</span>
-         </h1>
+        </h1>
+
     </div>
+    <div class="data-box">
 
-   <div class="data-box">
-        <div class="box-heading">SIGN UP</div>
+        <div class="box-heading">
+            SIGN UP
+        </div>
 
-        <input class="input-field" type="text" placeholder="First Name" id="first_name">
-        <input class="input-field" type="text" placeholder="Last Name" id="last_name">
 
-        <input class="input-field" type="text" placeholder="Middle Name" id="middle_name">
-        <input class="input-field" type="date" placeholder="Birthdate" id="birthdate">
+        <input
+            class="input-field"
+            type="text"
+            placeholder="First Name"
+            id="first_name"
+        >
+        <input
+            class="input-field"
+            type="text"
+            placeholder="Last Name"
+            id="last_name"
+        >
+        <input
+            class="input-field"
+            type="text"
+            placeholder="Middle Name"
+            id="middle_name"
+        >
+        <input
+            class="input-field"
+            type="date"
+            id="birthdate"
+        >
+        <select
+            class="input-field"
+            id="gender"
+        >
+            <option value="" disabled selected>
+                Gender
+            </option>
 
-        <select class="input-field" id="gender">
-            <option value="" disabled selected>Gender</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Other</option>
+            <option value="Male">
+                Male
+            </option>
+
+            <option value="Female">
+                Female
+            </option>
+
+            <option value="Other">
+                Other
+            </option>
+
         </select>
-        <input class="input-field" type="tel" placeholder="Phone Number" id="phone_number">
-
-        <input class="input-field full-width" type="email" placeholder="Email" id="email">
-        <input class="input-field full-width" type="text" placeholder="Address" id="address">
-        <input class="input-field full-width" type="text" placeholder="Username" id="username">
-        <input class="input-field full-width" type="password" placeholder="Password" id="password_hash">
-
-        <div class="design-button" onClick="Click()">SIGN UP</div>
-
-        <div class="design-footer-text">Already have an account?</div>
+        <input
+            class="input-field"
+            type="tel"
+            placeholder="Phone Number"
+            id="phone_number"
+        >
+        <input
+            class="input-field full-width"
+            type="email"
+            placeholder="Email"
+            id="email"
+        >
+        <input
+            class="input-field full-width"
+            type="text"
+            placeholder="Address"
+            id="address"
+        >
+        <input
+            class="input-field full-width"
+            type="text"
+            placeholder="Username"
+            id="username"
+        >
+        <input
+            class="input-field full-width"
+            type="password"
+            placeholder="Password"
+            id="password"
+        >
+        <div
+            class="design-button"
+            onclick="Click()"
+        >
+            SIGN UP
+        </div>
+        <div class="design-footer-text">
+            Already have an account?
+        </div>
     </div>
+<script>
 
-    <script>
-        // Include both input and select tags
-        const inputs = document.querySelectorAll('input, select');
-        const user = {
-            role_id: 5, // Default to 'Customer' role
-            first_name: "",
-            middle_name: "",
-            last_name: "",
-            birthdate: "",
-            gender: "",
-            phone_number: "",
-            email: "",
-            address: "",
-            username: "",
-            password_hash: ""
-        };
+function Click() {
 
-        function Click() {
-            // Collect form values dynamically matching element IDs to user object keys
-            inputs.forEach(input => {
-                if (input.id && user.hasOwnProperty(input.id)) {
-                    user[input.id] = input.value;
-                }
-            });
+    const user = {
 
-            // Validation: Ensure required fields are not empty
-            if (!user.username || !user.password_hash) {
-                alert("Please fill in Username and Password!");
-                return;
-            }
+        first_name:
+            document.getElementById("first_name").value.trim(),
 
-            // Send data to PHP backend
-            fetch('register.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(user)
-            })
-            .then(response => response.json())
-            .then(data => {
-                alert(data.message);
-                if (data.status === 'success') {
-                    console.log("Success:", data);
-                    // Redirect to login page or clear form inputs here
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Something went wrong connecting to the server.');
-            });
+        middle_name:
+            document.getElementById("middle_name").value.trim(),
+
+        last_name:
+            document.getElementById("last_name").value.trim(),
+
+        birthdate:
+            document.getElementById("birthdate").value,
+
+        gender:
+            document.getElementById("gender").value,
+
+        phone_number:
+            document.getElementById("phone_number").value.trim(),
+
+        email:
+            document.getElementById("email").value.trim(),
+
+        address:
+            document.getElementById("address").value.trim(),
+
+        username:
+            document.getElementById("username").value.trim(),
+
+        password:
+            document.getElementById("password").value
+
+    };
+
+
+
+    if (
+        !user.first_name ||
+        !user.last_name ||
+        !user.birthdate ||
+        !user.gender ||
+        !user.phone_number ||
+        !user.email ||
+        !user.address ||
+        !user.username ||
+        !user.password
+    ) {
+
+        alert("Please fill in all required fields!");
+
+        return;
+    }
+
+
+
+    fetch("register.php", {
+
+        method: "POST",
+
+        headers: {
+            "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify(user)
+
+    })
+
+    .then(response => response.json())
+
+    .then(data => {
+
+        if (data.status === "success") {
+
+
+            sessionStorage.setItem(
+                "registrationData",
+                JSON.stringify({
+
+                    first_name: user.first_name,
+
+                    middle_name: user.middle_name,
+
+                    last_name: user.last_name,
+
+                    birthdate: user.birthdate,
+
+                    gender: user.gender,
+
+                    phone_number: user.phone_number,
+
+                    email: user.email,
+
+                    address: user.address,
+
+                    username: user.username
+
+                })
+            );
+
+
+            
+
+            window.location.href =
+                "registration-success.html";
+
         }
-    </script>
+
+        else {
+
+            alert(data.message);
+
+        }
+
+    })
+
+    .catch(error => {
+
+        console.error(error);
+
+        alert(
+            "Something went wrong connecting to the server."
+        );
+
+    });
+
+}
+
+</script>
+
 </body>
 </html>
-    

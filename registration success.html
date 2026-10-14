@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Sun Son Solar - Registration Successful
+    </title>
+
+
+<style>
+
+
+body {
+
+    background:
+        linear-gradient(
+            0deg,
+            #ffd56b,
+            #ff9a56,
+            #ff6f91
+        );
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: flex-start;
+
+    align-items: center;
+
+    min-height: 100vh;
+
+    margin: 0;
+
+}
+
+
+
+
+.solar-panel {
+
+    width: 100%;
+
+    min-height: 350px;
+
+    background-image:
+
+        linear-gradient(
+            rgba(0,0,0,0.25),
+            rgba(0,0,0,0.25)
+        ),
+
+        url("panelbg.png");
+
+    background-size: cover;
+
+    background-position: center;
+
+    background-repeat: no-repeat;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+}
+
+
+.main-title {
+
+    text-align: center;
+
+    margin: 0;
+
+    color: white;
+
+    font-size: 7rem;
+
+    font-family:
+        'Times New Roman',
+        Times,
+        serif;
+
+    text-shadow:
+        2px 2px 10px
+        rgba(0,0,0,0.6);
+
+}
+
+
+.sun {
+
+    color: red;
+
+}
+
+
+.son {
+
+    color: orange;
+
+}
+
+
+.solar {
+
+    color: yellow;
+
+}
+
+
+
+
+.data-box {
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff6a00,
+            #ee0979
+        );
+
+    padding: 35px 40px;
+
+    border-radius: 16px;
+
+    width: 600px;
+
+    box-shadow:
+        0 10px 30px
+        rgba(0,0,0,0.5);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.15);
+
+    font-family: tahoma, sans-serif;
+
+    margin-top: 40px;
+
+    margin-bottom: 40px;
+
+    box-sizing: border-box;
+
+}
+
+
+
+
+.box-heading {
+
+    margin: 0 0 10px 0;
+
+    font-size: 2rem;
+
+    color: white;
+
+    letter-spacing: 1px;
+
+    text-align: center;
+
+}
+
+
+
+
+.success-message {
+
+    text-align: center;
+
+    color: #fdfd96;
+
+    font-size: 1.05rem;
+
+    font-weight: bold;
+
+    margin-bottom: 25px;
+
+}
+
+
+
+.credentials {
+
+    background: #fff8f0;
+
+    border-radius: 10px;
+
+    padding: 20px;
+
+    color: #333;
+
+}
+
+
+
+
+.credential-row {
+
+    padding: 10px 0;
+
+    border-bottom:
+        1px solid #ddd;
+
+}
+
+
+.credential-row:last-child {
+
+    border-bottom: none;
+
+}
+
+
+.credential-label {
+
+    font-weight: bold;
+
+}
+
+
+
+
+.password-note {
+
+    color: white;
+
+    font-size: 0.85rem;
+
+    margin-top: 15px;
+
+    text-align: center;
+
+}
+
+
+
+
+.design-button {
+
+    height: 48px;
+
+    background-color:
+        #fdfd96;
+
+    border-radius: 8px;
+
+    margin-top: 25px;
+
+    box-shadow:
+        0 4px 15px
+        rgba(255,69,0,0.4);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    color: #000000;
+
+    font-weight: bold;
+
+    font-size: 1.1rem;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+}
+
+
+.design-button:hover {
+
+    background-color:
+        #ffffb0;
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+
+
+@media (max-width: 700px) {
+
+    .main-title {
+
+        font-size: 4rem;
+
+    }
+
+
+    .solar-panel {
+
+        min-height: 280px;
+
+    }
+
+
+    .data-box {
+
+        width: 85%;
+
+        padding:
+            30px 25px;
+
+    }
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+
+
+<div class="solar-panel">
+
+    <h1 class="main-title">
+
+        <span class="sun">
+            SUN
+        </span>
+
+        <span class="son">
+            SON
+        </span>
+
+        <span class="solar">
+            SOLAR
+        </span>
+
+    </h1>
+
+</div>
+
+
+
+
+<div class="data-box">
+
+
+    <div class="box-heading">
+
+        REGISTRATION SUCCESSFUL!
+
+    </div>
+
+
+    <div class="success-message">
+
+        Your account has been
+        successfully registered.
+
+    </div>
+
+
+    
+
+    <div
+        class="credentials"
+        id="credentials"
+    >
+
+    </div>
+
+
+    <div class="password-note">
+
+        Your password has been securely
+        saved and is not displayed here.
+
+    </div>
+
+
+    
+    <div
+        class="design-button"
+        onclick="goBack()"
+    >
+
+        BACK TO REGISTRATION
+
+    </div>
+
+
+</div>
+
+
+
+<script>
+
+
+
+
+const data = JSON.parse(
+
+    sessionStorage.getItem(
+        "registrationData"
+    )
+
+);
+
+
+
+
+
+if (!data) {
+
+    document.getElementById(
+        "credentials"
+    ).innerHTML =
+
+        `
+        <div class="credential-row">
+
+            No registration data found.
+
+        </div>
+        `;
+
+}
+
+
+
+
+else {
+
+    document.getElementById(
+        "credentials"
+    ).innerHTML = `
+
+
+        <div class="credential-row">
+
+            <span class="credential-label">
+                First Name:
+            </span>
+
+            ${escapeHTML(data.first_name)}
+
+        </div>
+
+
+        <div class="credential-row">
+
+            <span class="credential-label">
+                Middle Name:
+            </span>
+
+            ${escapeHTML(
+                data.middle_name || "N/A"
+            )}
+
+        </div>
+
+
+        <div class="credential-row">
+
+            <span class="credential-label">
+                Last Name:
+            </span>
+
+            ${escapeHTML(data.last_name)}
+
+        </div>
+
+
+        <div class="credential-row">
+
+            <span class="credential-label">
+                Birthdate:
+            </span>
+
+            ${escapeHTML(data.birthdate)}
+
+        </div>
+
+
+        <div class="credential-row">
+
+            <span class="credential-label">
+                Gender:
+            </span>
+
+            ${escapeHTML(data.gender)}
+
+        </div>
+
+
+        <div class="credential-row">
+
+            <span class="credential-label">
+                Phone Number:
+            </span>
+
+            ${escapeHTML(data.phone_number)}
+
+        </div>
+
+
+        <div class="credential-row">
+
+            <span class="credential-label">
+                Email:
+            </span>
+
+            ${escapeHTML(data.email)}
+
+        </div>
+
+
+        <div class="credential-row">
+
+            <span class="credential-label">
+                Address:
+            </span>
+
+            ${escapeHTML(data.address)}
+
+        </div>
+
+
+        <div class="credential-row">
+
+            <span class="credential-label">
+                Username:
+            </span>
+
+            ${escapeHTML(data.username)}
+
+        </div>
+
+
+    `;
+
+}
+
+
+
+
+function escapeHTML(value) {
+
+    return String(value)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+    
+
+function goBack() {
+
+    window.location.href =
+        "Registration Page.html";
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
