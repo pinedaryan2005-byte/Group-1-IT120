@@ -154,6 +154,40 @@
             background-color: #ffffb0;
             transform: translateY(-2px);
         }
+        .footer-buttons {
+            grid-column: 1 / -1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-buttons .design-footer-text {
+            margin-top: 0;
+        }
+
+        .employee-button {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fdfd96;
+            color: #000000;
+            text-decoration: none;
+            padding: 12px 18px;
+            border-radius: 8px;
+            font-family: Tahoma, sans-serif;
+            font-size: 0.85rem;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(255, 69, 0, 0.4);
+            transition: 0.3s;
+        }
+        .employee-button:hover {
+            background-color: #ffffb0;
+            color: #000000;
+            transform: translateY(-2px);
+        }
 
         .design-footer-text {
             text-align: center;
@@ -309,9 +343,12 @@
         >
             SIGN UP
         </div>
+        <div class="footer-buttons">
         <div class="design-footer-text">
             <a href="Homepage.html">Already have an account?</a>
         </div>
+        <a href="Employee Registration.html" class="employee-button">Employee Registration</a>
+      </div>
     </div>
 <script>
 
