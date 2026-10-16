@@ -102,6 +102,20 @@
             font-family: tahoma, sans-serif;
             font-size: 0.95rem;
         }
+        .date-field {
+            display: flex;
+            flex-direction: column;
+        }
+        .date-label {
+            display: block;
+            color: #ffffff;
+            font-family: tahoma,sans-serif;
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+        }
+        #gender {
+            margin-top: 25px;
+        }
 
         .input-field:focus {
             outline: 2px solid #ff9a56;
@@ -208,7 +222,7 @@
     <div class="data-box">
 
         <div class="box-heading">
-            SIGN UP
+           CUSTOMER SIGN UP
         </div>
 
 
@@ -225,16 +239,19 @@
             id="last_name"
         >
         <input
-            class="input-field"
+            class="input-field full-width"
             type="text"
             placeholder="Middle Name"
             id="middle_name"
         >
+        <div class="date-field">
+        <label for="birthdate" class="date-label">Birthdate</label>
         <input
             class="input-field"
             type="date"
             id="birthdate"
         >
+        </div>
         <select
             class="input-field"
             id="gender"
