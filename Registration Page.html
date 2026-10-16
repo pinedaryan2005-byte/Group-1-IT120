@@ -143,19 +143,25 @@
 
         .design-footer-text {
             text-align: center;
-            color: #000000;
             font-size: 0.85rem;
-
             margin-top: 20px;
-
-            cursor: pointer;
-            transition: color 0.2s;
-
             grid-column: 1 / -1;
         }
 
         .design-footer-text:hover {
             color: rgb(255,243,136);
+            text-decoration: underline;
+            transform: translateY(-2px);
+        }
+
+        .design-footer-text a {
+            color: navy;
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+
+        .design-footer-text a:hover {
+            color: #ffffff;
             text-decoration: underline;
         }
 
@@ -287,7 +293,7 @@
             SIGN UP
         </div>
         <div class="design-footer-text">
-            Already have an account?
+            <a href="Homepage.html">Already have an account?</a>
         </div>
     </div>
 <script>
