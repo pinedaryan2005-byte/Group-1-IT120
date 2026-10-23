@@ -1,0 +1,877 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sun Son Solar | Customer Dashboard</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Tahoma, Arial, sans-serif;
+            background: linear-gradient(135deg, #ffd56b, #ff9a56, #ff6f91);
+            color: #333;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 250px;
+            height: 100vh;
+            overflow-y: auto;
+            background: linear-gradient(180deg, rgba(255, 106, 0, 0.97), rgba(238, 9, 121, 0.97));
+            padding: 25px 18px;
+            color: white;
+            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.25);
+            z-index: 1000;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 35px;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 2rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 7px rgba(0, 0, 0, 0.5);
+        }
+
+        .sun { color: red; }
+        .son { color: orange; }
+        .solar { color: yellow; }
+
+        .customer-profile {
+            text-align: center;
+            padding-bottom: 25px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+            margin-bottom: 25px;
+        }
+
+        .profile-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 10px;
+            background: #fdfd96;
+            color: #ff6a00;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .customer-profile {
+            display: block;
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .customer-profile:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 10px;
+        }
+
+        .customer-profile h3,
+        .customer-profile p {
+            color: white;
+        }
+
+        .customer-profile h3 {
+            font-size: 1rem;
+        }
+
+        .customer-profile p {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+        }
+
+        .sidebar-nav li {
+            margin-bottom: 8px;
+        }
+
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 13px 15px;
+            color: white;
+            text-decoration: none;
+            border-radius: 9px;
+            transition: 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .sidebar-nav a:hover,
+        .sidebar-nav a.active {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(3px);
+        }
+
+        .nav-icon {
+            width: 25px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .logout {
+            margin-top: 30px;
+            padding-bottom: 5px;
+        }
+
+        .logout a {
+            display: block;
+            text-align: center;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .logout a:hover {
+            background: rgba(0, 0, 0, 0.35);
+        }
+
+        .main-content {
+            margin-left: 250px;
+            min-height: 100vh;
+            padding: 30px 40px;
+        }
+
+        .topbar {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 18px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.15);
+            margin-bottom: 30px;
+        }
+
+        .topbar h1 {
+            font-size: 1.7rem;
+            color: #333;
+        }
+
+        .topbar p {
+            color: #777;
+            font-size: 0.85rem;
+            margin-top: 3px;
+        }
+
+        .notification {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, #ff6a00, #ee0979);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .welcome-banner {
+            min-height: 230px;
+            background:
+                linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.45)),
+                url("panelbg.png");
+            background-size: cover;
+            background-position: center;
+            border-radius: 18px;
+            padding: 40px;
+            color: white;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+            margin-bottom: 35px;
+        }
+
+        .welcome-content {
+            max-width: 650px;
+        }
+
+        .welcome-content h2 {
+            font-size: 2.2rem;
+            margin-bottom: 12px;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+        }
+
+        .welcome-content p {
+            line-height: 1.6;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 22px;
+            border-radius: 14px;
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .stat-icon {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .stat-card h3 {
+            color: #ff6a00;
+            font-size: 1.5rem;
+        }
+
+        .stat-card p {
+            color: #777;
+            font-size: 0.85rem;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .section-header h2 {
+            font-size: 1.7rem;
+            color: #333;
+        }
+
+        .section-header a {
+            color: #ee0979;
+            font-size: 0.9rem;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 18px;
+            margin-bottom: 50px;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.12);
+            transition: 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-image {
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #ffb347, #ff6a00);
+            font-size: 4rem;
+        }
+
+        .product-content {
+            padding: 18px;
+        }
+
+        .product-content h3 {
+            color: #ff6a00;
+            margin-bottom: 8px;
+            font-size: 1.05rem;
+        }
+
+        .product-content p {
+            color: #666;
+            font-size: 0.8rem;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .view-product {
+            display: block;
+            text-align: center;
+            padding: 9px;
+            border-radius: 7px;
+            background: #fdfd96;
+            color: #222;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .view-product:hover {
+            background: #ffda44;
+        }
+
+        .services-container {
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 18px;
+            padding: 25px;
+            margin-bottom: 40px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .service-item {
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .service-item:hover {
+            transform: translateY(-5px);
+            background: white;
+        }
+
+        .service-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .service-item h3 {
+            font-size: 0.95rem;
+            color: #ee0979;
+            margin-bottom: 6px;
+        }
+
+        .service-item p {
+            font-size: 0.75rem;
+            color: #777;
+            line-height: 1.5;
+        }
+
+        .activity-section {
+            background: rgba(255, 255, 255, 0.92);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.12);
+            margin-bottom: 40px;
+            scroll-margin-top: 25px;
+        }
+
+        .activity {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .activity:last-child {
+            border-bottom: none;
+        }
+
+        .activity-icon {
+            width: 42px;
+            height: 42px;
+            flex-shrink: 0;
+            background: linear-gradient(135deg, #ff6a00, #ee0979);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .activity-info {
+            flex: 1;
+        }
+
+        .activity-info h4 {
+            font-size: 0.9rem;
+        }
+
+        .activity-info p {
+            font-size: 0.75rem;
+            color: #888;
+            line-height: 1.5;
+        }
+
+        .status {
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.7rem;
+            background: #fff3cd;
+            color: #856404;
+            white-space: nowrap;
+        }
+
+        .status.completed {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .dashboard-footer {
+            text-align: center;
+            color: #555;
+            padding: 20px;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 1200px) {
+            .product-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 850px) {
+            .sidebar {
+                width: 200px;
+                padding: 20px 12px;
+            }
+
+            .main-content {
+                margin-left: 200px;
+                padding: 25px;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .logo {
+                font-size: 1.6rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.4rem;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+                overflow: visible;
+            }
+
+            .logout {
+                margin-top: 20px;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 15px;
+            }
+
+            .topbar {
+                gap: 15px;
+            }
+
+            .topbar h1 {
+                font-size: 1.4rem;
+            }
+
+            .stats-grid,
+            .product-grid,
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .welcome-banner {
+                padding: 25px;
+            }
+
+            .welcome-content h2 {
+                font-size: 1.7rem;
+            }
+
+            .activity {
+                align-items: flex-start;
+                flex-wrap: wrap;
+            }
+
+            .activity-info {
+                min-width: 150px;
+            }
+
+            .section-header {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <aside class="sidebar">
+        <div class="logo">
+            <span class="sun">SUN</span>
+            <span class="son">SON</span>
+            <span class="solar">SOLAR</span>
+        </div>
+
+        <a href="account.html" class="customer-profile account-link">
+            <div class="profile-icon">👤</div>
+            <h3>Customer</h3>
+            <p>Customer Account</p>
+        </a>
+
+        <ul class="sidebar-nav">
+            <li>
+                <a href="#dashboard" class="active">
+                    <span class="nav-icon">🏠</span>
+                    Dashboard
+                </a>
+            </li>
+            <li>
+                <a href="#products">
+                    <span class="nav-icon">☀️</span>
+                    Products
+                </a>
+            </li>
+            <li>
+                <a href="#services">
+                    <span class="nav-icon">🔧</span>
+                    Services
+                </a>
+            </li>
+            <li>
+                <a href="#consultation">
+                    <span class="nav-icon">💬</span>
+                    Consultation
+                </a>
+            </li>
+            <li>
+                <a href="#orders">
+                    <span class="nav-icon">📋</span>
+                    My Requests
+                </a>
+            </li>
+            <li>
+                <a href="#history">
+                    <span class="nav-icon">🕘</span>
+                    History
+                </a>
+            </li>
+            <li>
+                <a href="#monitoring">
+                    <span class="nav-icon">📊</span>
+                    Monitoring
+                </a>
+            </li>
+            <li>
+                <a href="Account Settings.html">
+                    <span class="nav-icon">⚙️</span>
+                    My Account
+                </a>
+            </li>
+        </ul>
+
+        <div class="logout">
+            <a href="index.html">⇦ Logout</a>
+        </div>
+    </aside>
+
+    <main class="main-content" id="dashboard">
+        <div class="topbar">
+            <div>
+                <h1>Customer Dashboard</h1>
+                <p>Welcome back, John! Explore our solar products and services.</p>
+            </div>
+            <div class="notification" title="Notifications">🔔</div>
+        </div>
+
+        <section class="welcome-banner">
+            <div class="welcome-content">
+                <h2>Power Your Future With Solar</h2>
+                <p>
+                    Discover high-quality solar products and professional services
+                    designed to help you save energy, reduce costs, and build a
+                    more sustainable future.
+                </p>
+            </div>
+        </section>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">☀️</div>
+                <h3>5</h3>
+                <p>Product Categories</p>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🔧</div>
+                <h3>7</h3>
+                <p>Available Services</p>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">📋</div>
+                <h3>2</h3>
+                <p>Active Requests</p>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">⚡</div>
+                <h3>24/7</h3>
+                <p>System Monitoring</p>
+            </div>
+        </div>
+
+        <section id="products">
+            <div class="section-header">
+                <h2>Our Products</h2>
+                <a href="#products">View All Products →</a>
+            </div>
+
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image">☀️</div>
+                    <div class="product-content">
+                        <h3>Solar Panels</h3>
+                        <p>
+                            High-quality solar panels designed to convert sunlight
+                            into reliable electrical energy.
+                        </p>
+                        <a href="#products" class="view-product">View Products</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">⚡</div>
+                    <div class="product-content">
+                        <h3>Inverters</h3>
+                        <p>
+                            Reliable inverters that convert solar energy into
+                            usable electricity for your property.
+                        </p>
+                        <a href="#products" class="view-product">View Products</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">🔋</div>
+                    <div class="product-content">
+                        <h3>Batteries</h3>
+                        <p>
+                            Store excess solar energy for use when your system
+                            needs additional power.
+                        </p>
+                        <a href="#products" class="view-product">View Products</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">🏗️</div>
+                    <div class="product-content">
+                        <h3>Racking &amp; Mounting</h3>
+                        <p>
+                            Durable mounting solutions that securely position
+                            your solar panels.
+                        </p>
+                        <a href="#products" class="view-product">View Products</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">🔌</div>
+                    <div class="product-content">
+                        <h3>Solar Wires</h3>
+                        <p>
+                            High-quality electrical wires and cables designed
+                            for solar energy systems.
+                        </p>
+                        <a href="#products" class="view-product">View Products</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="services-container" id="services">
+            <div class="section-header">
+                <h2>Solar Services</h2>
+                <a href="#services">View All Services →</a>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-item" id="consultation">
+                    <div class="service-icon">💬</div>
+                    <h3>Consultation</h3>
+                    <p>Discuss your energy needs with our solar specialists.</p>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-icon">📐</div>
+                    <h3>Designing</h3>
+                    <p>Customized solar system designs for your property.</p>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-icon">📄</div>
+                    <h3>Permitting</h3>
+                    <p>Assistance with necessary solar installation permits.</p>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-icon">🔧</div>
+                    <h3>Installation</h3>
+                    <p>Professional installation of your solar energy system.</p>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-icon">⚙️</div>
+                    <h3>Maintenance</h3>
+                    <p>Keep your solar system performing efficiently.</p>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-icon">🛠️</div>
+                    <h3>Repair</h3>
+                    <p>Get professional assistance when your system needs repairs.</p>
+                </div>
+
+                <div class="service-item" id="monitoring">
+                    <div class="service-icon">📊</div>
+                    <h3>Monitoring</h3>
+                    <p>Track your solar system's performance and energy production.</p>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-icon">📞</div>
+                    <h3>Support</h3>
+                    <p>Contact our team whenever you need assistance.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="activity-section" id="orders">
+            <div class="section-header">
+                <h2>Recent Activity</h2>
+                <a href="#history">View History →</a>
+            </div>
+
+            <div class="activity">
+                <div class="activity-icon">💬</div>
+                <div class="activity-info">
+                    <h4>Consultation Request</h4>
+                    <p>Solar consultation request submitted on October 20, 2026.</p>
+                </div>
+                <span class="status">Pending</span>
+            </div>
+
+            <div class="activity">
+                <div class="activity-icon">🔧</div>
+                <div class="activity-info">
+                    <h4>Installation Request</h4>
+                    <p>Your installation request is currently being reviewed.</p>
+                </div>
+                <span class="status">Processing</span>
+            </div>
+
+            <div class="activity">
+                <div class="activity-icon">📊</div>
+                <div class="activity-info">
+                    <h4>System Monitoring</h4>
+                    <p>Solar monitoring information is available on your account.</p>
+                </div>
+                <span class="status">Active</span>
+            </div>
+        </section>
+
+        <section class="activity-section" id="history">
+            <div class="section-header">
+                <h2>History</h2>
+                <span>Previous activities and requests</span>
+            </div>
+
+            <div class="activity">
+                <div class="activity-icon">💬</div>
+                <div class="activity-info">
+                    <h4>Consultation Request Submitted</h4>
+                    <p>October 20, 2026 · Solar consultation request created.</p>
+                </div>
+                <span class="status">Pending</span>
+            </div>
+
+            <div class="activity">
+                <div class="activity-icon">🔧</div>
+                <div class="activity-info">
+                    <h4>Installation Request</h4>
+                    <p>October 18, 2026 · Installation request sent for review.</p>
+                </div>
+                <span class="status">Processing</span>
+            </div>
+
+            <div class="activity">
+                <div class="activity-icon">📊</div>
+                <div class="activity-info">
+                    <h4>Monitoring Access</h4>
+                    <p>October 15, 2026 · Solar system monitoring opened.</p>
+                </div>
+                <span class="status">Active</span>
+            </div>
+
+            <div class="activity">
+                <div class="activity-icon">☀️</div>
+                <div class="activity-info">
+                    <h4>Products Browsed</h4>
+                    <p>October 12, 2026 · Viewed solar panels and inverter categories.</p>
+                </div>
+                <span class="status completed">Completed</span>
+            </div>
+        </section>
+
+        <section class="activity-section" id="account">
+            <div class="section-header">
+                <h2>My Account</h2>
+            </div>
+            <p>Manage your customer profile and account information here.</p>
+        </section>
+
+        <footer class="dashboard-footer">
+            © 2026 Sun Son Solar. All Rights Reserved.
+        </footer>
+    </main>
+
+    <script>
+        const navigationLinks = document.querySelectorAll(".sidebar-nav a");
+
+        navigationLinks.forEach(link => {
+            link.addEventListener("click", function () {
+                navigationLinks.forEach(item => item.classList.remove("active"));
+                this.classList.add("active");
+            });
+        });
+    </script>
+</body>
+</html>
