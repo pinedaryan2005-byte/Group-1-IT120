@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -295,7 +295,6 @@
             font-weight: bold;
         }
 
-        /* PRODUCT DETAILS */
         .product-content {
             display: flex;
             flex-direction: column;
@@ -343,6 +342,7 @@
             gap: 10px;
             flex-wrap: wrap;
             margin-top: auto;
+            margin-bottom: 14px;
         }
 
         .product-price {
@@ -359,24 +359,41 @@
             margin-top: 3px;
         }
 
-        .product-button {
+        .product-actions {
+            display: flex;
+            gap: 8px;
+            width: 100%;
+            margin-top: 0;
+        }
+
+        .product-actions a {
+            flex: 1;
             display: inline-block;
-            border: none;
             border-radius: 7px;
-            padding: 10px 13px;
-            background: linear-gradient(135deg, #ff6a00, #ee0979);
-            color: white;
-            text-decoration: none;
+            padding: 10px 8px;
             text-align: center;
+            text-decoration: none;
             font-family: Tahoma, Arial, sans-serif;
             font-size: 0.76rem;
             font-weight: bold;
-            cursor: pointer;
             transition: 0.3s;
         }
 
-        .product-button:hover {
-            opacity: 0.88;
+        .buy-now {
+            background: linear-gradient(135deg, #ff6a00, #ee0979);
+            color: white;
+            border: 2px solid transparent;
+        }
+
+        .add-to-cart {
+            background: white;
+            color: #e85d04;
+            border: 2px solid #ff6a00;
+        }
+
+        .product-actions a:hover {
+            opacity: 0.85;
+            transform: translateY(-2px);
         }
 
         .info-note {
@@ -401,7 +418,6 @@
             font-size: 0.8rem;
         }
 
-        /* RESPONSIVE LAYOUT */
         @media (max-width: 1200px) {
             .product-grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -474,6 +490,12 @@
                 height: 230px;
             }
         }
+
+        @media (max-width: 400px) {
+            .product-actions {
+                flex-direction: column;
+            }
+        }
     </style>
 </head>
 
@@ -499,7 +521,7 @@
                 </a>
             </li>
             <li>
-                <a href="Solar Panel.html" class="active">
+                <a href="dashboard.html#products>
                     <span class="nav-icon">☀️</span>
                     Products
                 </a>
@@ -576,7 +598,8 @@
 
             <article class="product-card">
                 <div class="product-image">
-                   <img src="Greenfield GSP60W.png">
+                    <img src="Greenfield GSP60W.png"
+                         alt="Greenfield GSP60W Foldable Solar Panel 60W">
                 </div>
 
                 <div class="product-content">
@@ -592,16 +615,19 @@
                             ₱ 6,595
                             <small>Price per panel</small>
                         </div>
-                        <a href="dashboard.html#consultation" class="product-button">
-                            Ask About Product
-                        </a>
+                    </div>
+
+                    <div class="product-actions">
+                        <a href="#" class="buy-now">Buy Now</a>
+                        <a href="#" class="add-to-cart">Add to Cart</a>
                     </div>
                 </div>
             </article>
 
             <article class="product-card">
                 <div class="product-image">
-                   <img src="Greenfield GSP30W Foldable Solar Panel 30W.png">
+                    <img src="Greenfield GSP30W Foldable Solar Panel 30W.png"
+                         alt="Greenfield GSP30W Foldable Solar Panel 30W">
                 </div>
 
                 <div class="product-content">
@@ -617,16 +643,19 @@
                             ₱ 4,495
                             <small>Price per panel</small>
                         </div>
-                        <a href="dashboard.html#consultation" class="product-button">
-                            Ask About Product
-                        </a>
+                    </div>
+
+                    <div class="product-actions">
+                        <a href="#" class="buy-now">Buy Now</a>
+                        <a href="#" class="add-to-cart">Add to Cart</a>
                     </div>
                 </div>
             </article>
 
             <article class="product-card">
                 <div class="product-image">
-                   <img src="Taifu Solar Panel 590W.png">
+                    <img src="Taifu Solar Panel 590W.png"
+                         alt="Taifu Solar Panel 590W">
                 </div>
 
                 <div class="product-content">
@@ -642,16 +671,19 @@
                             ₱ 7,750
                             <small>Price per panel</small>
                         </div>
-                        <a href="dashboard.html#consultation" class="product-button">
-                            Ask About Product
-                        </a>
+                    </div>
+
+                    <div class="product-actions">
+                        <a href="#" class="buy-now">Buy Now</a>
+                        <a href="#" class="add-to-cart">Add to Cart</a>
                     </div>
                 </div>
             </article>
 
             <article class="product-card">
                 <div class="product-image">
-                   <img src="BougeRV Yuma 100W CIGS Thin-film Flexible Solar Panel with Pre-Punched Holes.png">
+                    <img src="BougeRV Yuma 100W CIGS Thin-film Flexible Solar Panel with Pre-Punched Holes.png"
+                         alt="BougeRV Yuma 100W CIGS Thin-film Flexible Solar Panel">
                 </div>
 
                 <div class="product-content">
@@ -667,17 +699,19 @@
                             ₱ 14,599
                             <small>Price per panel</small>
                         </div>
-                        <a href="dashboard.html#consultation" class="product-button">
-                            Ask About Product
-                        </a>
+                    </div>
+
+                    <div class="product-actions">
+                        <a href="#" class="buy-now">Buy Now</a>
+                        <a href="#" class="add-to-cart">Add to Cart</a>
                     </div>
                 </div>
             </article>
 
-
             <article class="product-card">
                 <div class="product-image">
-                   <img src="Victron Energy Solar Panel 360w 24v Monocrytalline 1980x1002.png">
+                    <img src="Victron Energy Solar Panel 360w 24v Monocrytalline 1980x1002.png"
+                         alt="Victron Energy Solar Panel 360W 24V Monocrystalline">
                 </div>
 
                 <div class="product-content">
@@ -693,18 +727,19 @@
                             ₱ 18,399
                             <small>Price per panel</small>
                         </div>
-                        <a href="dashboard.html#consultation" class="product-button">
-                            Ask About Product
-                        </a>
+                    </div>
+
+                    <div class="product-actions">
+                        <a href="#" class="buy-now">Buy Now</a>
+                        <a href="#" class="add-to-cart">Add to Cart</a>
                     </div>
                 </div>
             </article>
 
-
-
             <article class="product-card">
                 <div class="product-image">
-                   <img src="Promate SP120F Monocrystalline Solar Panel.png">
+                    <img src="Promate SP120F Monocrystalline Solar Panel.png"
+                         alt="Promate SP120F Monocrystalline Solar Panel">
                 </div>
 
                 <div class="product-content">
@@ -720,9 +755,11 @@
                             ₱ 16,999
                             <small>Price per panel</small>
                         </div>
-                        <a href="dashboard.html#consultation" class="product-button">
-                            Ask About Product
-                        </a>
+                    </div>
+
+                    <div class="product-actions">
+                        <a href="#" class="buy-now">Buy Now</a>
+                        <a href="#" class="add-to-cart">Add to Cart</a>
                     </div>
                 </div>
             </article>
@@ -730,10 +767,12 @@
         </section>
 
         <div class="info-note">
-            <strong>Need help choosing a solar panel?</strong>
-            Select “Ask About Product” to open the consultation section on your
-            dashboard. Update the sample product names, pictures, specifications,
-            and prices before showing the page to customers.
+            <strong>Ready to choose your solar panel?</strong>
+            Use <strong>Buy Now</strong> to proceed toward purchasing or
+            <strong>Add to Cart</strong> to indicate that you want to add a product
+            to your cart. These buttons currently have placeholder links and will
+            need to be connected to the checkout and cart features by your
+            development team.
         </div>
 
         <footer class="page-footer">
@@ -742,3 +781,4 @@
     </main>
 </body>
 </html>
+```

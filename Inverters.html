@@ -1,0 +1,731 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inverters</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Tahoma, Arial, sans-serif;
+            background: linear-gradient(135deg, #ffd56b, #ff9a56, #ff6f91);
+            color: #333;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 250px;
+            height: 100vh;
+            overflow-y: auto;
+            background: linear-gradient(
+                180deg,
+                rgba(255, 106, 0, 0.97),
+                rgba(238, 9, 121, 0.97)
+            );
+            padding: 25px 18px;
+            color: white;
+            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.25);
+            z-index: 1000;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 35px;
+            font-family: "Times New Roman", Times, serif;
+            font-size: 2rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 7px rgba(0, 0, 0, 0.5);
+        }
+
+        .sun { color: red; }
+        .son { color: orange; }
+        .solar { color: yellow; }
+
+        .customer-profile {
+            display: block;
+            text-align: center;
+            color: white;
+            text-decoration: none;
+            padding: 12px 8px 25px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+            margin-bottom: 25px;
+            transition: 0.3s;
+        }
+
+        .customer-profile:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 10px;
+        }
+
+        .profile-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 10px;
+            background: #fdfd96;
+            color: #ff6a00;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .customer-profile h3 {
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+
+        .customer-profile p {
+            font-size: 0.8rem;
+            opacity: 0.85;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+        }
+
+        .sidebar-nav li {
+            margin-bottom: 8px;
+        }
+
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 13px 15px;
+            color: white;
+            text-decoration: none;
+            border-radius: 9px;
+            transition: 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .sidebar-nav a:hover,
+        .sidebar-nav a.active {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(3px);
+        }
+
+        .nav-icon {
+            width: 25px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .logout {
+            margin-top: 30px;
+            padding-bottom: 5px;
+        }
+
+        .logout a {
+            display: block;
+            text-align: center;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .logout a:hover {
+            background: rgba(0, 0, 0, 0.35);
+        }
+
+        .main-content {
+            margin-left: 250px;
+            min-height: 100vh;
+            padding: 30px 40px;
+        }
+
+        .topbar {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 18px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.15);
+            margin-bottom: 25px;
+        }
+
+        .topbar h1 {
+            font-family: "Times New Roman", Times, serif;
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .topbar p {
+            color: #777;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        .back-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff6a00, #ee0979);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            padding: 11px 16px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            white-space: nowrap;
+            transition: 0.3s;
+        }
+
+        .back-link:hover {
+            opacity: 0.88;
+            transform: translateY(-2px);
+        }
+
+        .category-banner {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 16px;
+            padding: 25px 28px;
+            margin-bottom: 30px;
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .category-banner h2 {
+            color: #ff6a00;
+            font-family: "Times New Roman", Times, serif;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .category-banner p {
+            color: #666;
+            line-height: 1.7;
+            font-size: 0.9rem;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .section-header h2 {
+            font-family: "Times New Roman", Times, serif;
+            font-size: 1.7rem;
+            color: #333;
+        }
+
+        .product-count {
+            color: white;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .product-card {
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            background: rgba(255, 255, 255, 0.96);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.14);
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 210px;
+            background: #fff0e6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-bottom: 1px solid #ffe0cc;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 12px;
+            display: block;
+        }
+
+        .image-placeholder {
+            color: #e85d04;
+            text-align: center;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .image-placeholder span {
+            display: block;
+            font-size: 3.2rem;
+            margin-bottom: 8px;
+        }
+
+        .image-placeholder p {
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .product-content {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            padding: 19px;
+        }
+
+        .product-type {
+            color: #ee0979;
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+            font-size: 0.68rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .product-content h3 {
+            color: #ff6a00;
+            font-size: 1.08rem;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+
+        .product-details {
+            list-style: none;
+            border-top: 1px solid #eee;
+            padding-top: 13px;
+            margin-bottom: 16px;
+        }
+
+        .product-details li {
+            color: #555;
+            font-size: 0.78rem;
+            line-height: 1.8;
+        }
+
+        .product-details strong {
+            color: #333;
+        }
+
+        .product-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: auto;
+            margin-bottom: 14px;
+        }
+
+        .product-price {
+            color: #e85d04;
+            font-size: 1.15rem;
+            font-weight: bold;
+        }
+
+        .product-price small {
+            display: block;
+            color: #888;
+            font-size: 0.68rem;
+            font-weight: normal;
+            margin-top: 3px;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 8px;
+            width: 100%;
+            margin-top: 0;
+        }
+
+        .product-actions a {
+            flex: 1;
+            display: inline-block;
+            border-radius: 7px;
+            padding: 10px 8px;
+            text-align: center;
+            text-decoration: none;
+            font-family: Tahoma, Arial, sans-serif;
+            font-size: 0.76rem;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .buy-now {
+            background: linear-gradient(135deg, #ff6a00, #ee0979);
+            color: white;
+            border: 2px solid transparent;
+        }
+
+        .add-to-cart {
+            background: white;
+            color: #e85d04;
+            border: 2px solid #ff6a00;
+        }
+
+        .product-actions a:hover {
+            opacity: 0.85;
+            transform: translateY(-2px);
+        }
+
+        .info-note {
+            background: rgba(255, 255, 255, 0.85);
+            border-left: 5px solid #ee0979;
+            border-radius: 10px;
+            padding: 18px 20px;
+            margin-top: 28px;
+            color: #555;
+            font-size: 0.82rem;
+            line-height: 1.7;
+        }
+
+        .info-note strong {
+            color: #e85d04;
+        }
+
+        .page-footer {
+            text-align: center;
+            color: #555;
+            padding: 25px 10px 10px;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 1200px) {
+            .product-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .main-content {
+                padding: 25px;
+            }
+        }
+
+        @media (max-width: 850px) {
+            .sidebar {
+                width: 200px;
+                padding: 20px 12px;
+            }
+
+            .main-content {
+                margin-left: 200px;
+                padding: 20px;
+            }
+
+            .logo {
+                font-size: 1.6rem;
+            }
+
+            .product-image {
+                height: 180px;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+                overflow: visible;
+            }
+
+            .logout {
+                margin-top: 20px;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 15px;
+            }
+
+            .topbar {
+                align-items: flex-start;
+                padding: 18px;
+            }
+
+            .topbar h1 {
+                font-size: 1.5rem;
+            }
+
+            .category-banner {
+                padding: 20px;
+            }
+
+            .category-banner h2 {
+                font-size: 1.5rem;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .product-image {
+                height: 230px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .product-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <aside class="sidebar">
+        <div class="logo">
+            <span class="sun">SUN</span>
+            <span class="son">SON</span>
+            <span class="solar">SOLAR</span>
+        </div>
+
+        <a href="Account Settings.html" class="customer-profile">
+            <div class="profile-icon">👤</div>
+            <h3>Customer</h3>
+            <p>Customer Account</p>
+        </a>
+
+        <ul class="sidebar-nav">
+            <li>
+                <a href="dashboard.html">
+                    <span class="nav-icon">🏠</span>
+                    Dashboard
+                </a>
+            </li>
+            <li>
+                <a href="dashboard.html#products>
+                    <span class="nav-icon">☀️</span>
+                    Products
+                </a>
+            </li>
+            <li>
+                <a href="dashboard.html#services">
+                    <span class="nav-icon">🔧</span>
+                    Services
+                </a>
+            </li>
+            <li>
+                <a href="dashboard.html#consultation">
+                    <span class="nav-icon">💬</span>
+                    Consultation
+                </a>
+            </li>
+            <li>
+                <a href="dashboard.html#orders">
+                    <span class="nav-icon">📋</span>
+                    My Requests
+                </a>
+            </li>
+            <li>
+                <a href="dashboard.html#history">
+                    <span class="nav-icon">🕘</span>
+                    History
+                </a>
+            </li>
+            <li>
+                <a href="dashboard.html#monitoring">
+                    <span class="nav-icon">📊</span>
+                    Monitoring
+                </a>
+            </li>
+            <li>
+                <a href="Account Settings.html">
+                    <span class="nav-icon">⚙️</span>
+                    My Account
+                </a>
+            </li>
+        </ul>
+
+        <div class="logout">
+            <a href="index.html">⇦ Logout</a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="topbar">
+            <div>
+                <h1>Inverters</h1>
+                <p>Explore our Inverters products and compare their specifications.</p>
+            </div>
+            <a href="dashboard.html#products" class="back-link">
+                ← Back to Products
+            </a>
+        </header>
+
+        <section class="category-banner">
+            <h2>Find the Right Inverters for Your Needs</h2>
+            <p>
+                Browse our selection of inverters designed to convert
+                direct current (DC) electricity from solar panels or batteries
+                into alternating current (AC) electricity for compatible
+                appliances and electrical systems. Compare the available
+                products, specifications, warranties, and prices to find
+                an inverter that suits your power requirements.
+            </p>
+        </section>
+
+        <div class="section-header">
+            <h2>Available Inverters</h2>
+            <span class="product-count">Inverter Collection</span>
+        </div>
+
+        <section class="product-grid" aria-label="Solar panel products">
+
+            <article class="product-card">
+                <div class="product-image">
+                    <img src="Qoltec Hybrid Solar Inverter Off-Grid 3500W 100A 24V MPPT BMS AGM GEL LiFePO4 Wi-Fi option Sinus Power factor 1.0.png"
+                         alt="Qoltec Hybrid Solar Inverter Off-Grid 3500W 100A 24V MPPT BMS AGM GEL LiFePO4 Wi-Fi option Sinus Power factor 1.0">
+                </div>
+
+                <div class="product-content">
+                    <span class="product-type">Inverter</span>
+                    <h3>Qoltec Hybrid Solar Inverter Off-Grid 3500W 100A 24V MPPT BMS AGM GEL LiFePO4 Wi-Fi option Sinus Power factor 1.0</h3>
+
+                    <ul class="product-details">
+                        <li><strong>Warranty:</strong> 2 years</li>
+                    </ul>
+
+                    <div class="product-bottom">
+                        <div class="product-price">
+                            ₱ 35,999
+                            <small>Price per panel</small>
+                        </div>
+                    </div>
+
+                    <div class="product-actions">
+                        <a href="#" class="buy-now">Buy Now</a>
+                        <a href="#" class="add-to-cart">Add to Cart</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="product-card">
+                <div class="product-image">
+                    <img src="Y&H 2200W Solar Hybrid Inverter DC12V to AC230V,Off-Grid Pure Sine Wave Inverter with 80A MPPT Solar Charger+AC.png"
+                         alt="Y&H 2200W Solar Hybrid Inverter DC12V to AC230V,Off-Grid Pure Sine Wave Inverter with 80A MPPT Solar Charger+AC">
+                </div>
+
+                <div class="product-content">
+                    <span class="product-type">Inverter</span>
+                    <h3>Y&H 2200W Solar Hybrid Inverter DC12V to AC230V,Off-Grid Pure Sine Wave Inverter with 80A MPPT Solar Charger+AC</h3>
+
+                    <ul class="product-details">
+                        <li><strong>Warranty:</strong> 1.5 Years</li>
+                    </ul>
+
+                    <div class="product-bottom">
+                        <div class="product-price">
+                            ₱ 24,499
+                            <small>Price per panel</small>
+                        </div>
+                    </div>
+
+                    <div class="product-actions">
+                        <a href="#" class="buy-now">Buy Now</a>
+                        <a href="#" class="add-to-cart">Add to Cart</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="product-card">
+                <div class="product-image">
+                    <img src="Powmr 6.5 kW All-in-One Inverter Charger – 48V Solar Inverter Solution.png"
+                         alt="Powmr 6.5 kW All-in-One Inverter Charger – 48V Solar Inverter Solution">
+                </div>
+
+                <div class="product-content">
+                    <span class="product-type">Inverter</span>
+                    <h3>Powmr 6.5 kW All-in-One Inverter Charger – 48V Solar Inverter Solution</h3>
+
+                    <ul class="product-details">
+                        <li><strong>Warranty:</strong> 1 Year</li>
+                    </ul>
+
+                    <div class="product-bottom">
+                        <div class="product-price">
+                            ₱ 15,899
+                            <small>Price per panel</small>
+                        </div>
+                    </div>
+
+                    <div class="product-actions">
+                        <a href="#" class="buy-now">Buy Now</a>
+                        <a href="#" class="add-to-cart">Add to Cart</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="product-card">
+                <div class="product-image">
+                    <img src="Growatt SPE 12000 ES 12000W hybrid inverter.png"
+                         alt="Growatt SPE 12000 ES 12000W hybrid inverter">
+                </div>
+
+                <div class="product-content">
+                    <span class="product-type">Inverter</span>
+                    <h3>Growatt SPE 12000 ES 12000W hybrid inverter</h3>
+
+                    <ul class="product-details">
+                        <li><strong>Warranty:</strong> 2 Years</li>
+                    </ul>
+
+                    <div class="product-bottom">
+                        <div class="product-price">
+                            ₱ 83,599
+                            <small>Price per panel</small>
+                        </div>
+                    </div>
+
+                    <div class="product-actions">
+                        <a href="#" class="buy-now">Buy Now</a>
+                        <a href="#" class="add-to-cart">Add to Cart</a>
+                    </div>
+                </div>
+            </article>
+
+        </section>
+
+        <div class="info-note">
+            <strong>Ready to choose your solar panel?</strong>
+            Use <strong>Buy Now</strong> to proceed toward purchasing or
+            <strong>Add to Cart</strong> to indicate that you want to add a product
+            to your cart. These buttons currently have placeholder links and will
+            need to be connected to the checkout and cart features by your
+            development team.
+        </div>
+
+        <footer class="page-footer">
+            © 2026 Sun Son Solar. All Rights Reserved.
+        </footer>
+    </main>
+</body>
+</html>
+```
