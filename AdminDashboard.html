@@ -1,0 +1,815 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sun Son Solar | Admin Dashboard</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Tahoma,sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#ffd56b,#ff9a56,#ff6f91);
+}
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:260px;
+    height:100vh;
+    background:linear-gradient(180deg,#ff6a00,#ee0979);
+    padding:20px;
+    color:white;
+}
+
+.logo{
+    text-align:center;
+    font-size:2rem;
+    font-weight:bold;
+    margin-bottom:25px;
+}
+
+.profile{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.avatar{
+    width:80px;
+    height:80px;
+    background:#fff7a8;
+    color:#ff6a00;
+    margin:auto;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:2rem;
+}
+
+.menu a{
+    display:block;
+    color:white;
+    text-decoration:none;
+    padding:12px;
+    border-radius:10px;
+    margin:6px 0;
+}
+
+.menu a:hover{
+    background:rgba(255,255,255,.2);
+}
+
+.main{
+    margin-left:260px;
+    padding:25px;
+}
+
+.topbar{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.notification-btn{
+    background:#ff6a00;
+    color:white;
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    border:none;
+    cursor:pointer;
+}
+
+.hero{
+    margin-top:20px;
+    background:
+    linear-gradient(rgba(0,0,0,.4),rgba(0,0,0,.4)),
+    url('panelbg.png');
+    background-size:cover;
+    color:white;
+    padding:40px;
+    border-radius:20px;
+}
+
+.hero h1{
+    margin-bottom:10px;
+}
+
+.stats{
+    margin-top:20px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+}
+
+.card h2{
+    color:#ff6a00;
+}
+
+.section{
+    margin-top:25px;
+    background:white;
+    padding:25px;
+    border-radius:15px;
+}
+
+.section h2{
+    margin-bottom:15px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,td{
+    padding:12px;
+    border-bottom:1px solid #eee;
+}
+
+th{
+    background:#fff4e9;
+}
+
+.btn{
+    border:none;
+    padding:8px 12px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.primary{
+    background:#fdfd96;
+}
+
+.view{
+    background:#d9f7ff;
+}
+
+.edit{
+    background:#fff4bf;
+}
+
+.delete{
+    background:#ffd6d6;
+}
+
+.requests{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.request{
+    border:1px solid #eee;
+    border-radius:15px;
+    padding:20px;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border:1px solid #ddd;
+    border-radius:8px;
+}
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.5);
+    display:none;
+    justify-content:center;
+    align-items:center;
+}
+
+.modal-content{
+    width:450px;
+    background:white;
+    padding:25px;
+    border-radius:15px;
+}
+
+.show{
+    display:flex;
+}
+
+.sidepanel{
+    position:fixed;
+    top:0;
+    right:-350px;
+    width:350px;
+    height:100%;
+    background:white;
+    transition:.3s;
+    box-shadow:-5px 0 20px rgba(0,0,0,.2);
+    padding:20px;
+}
+
+.sidepanel.show{
+    right:0;
+}
+
+.toast{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    background:#28a745;
+    color:white;
+    padding:15px;
+    border-radius:10px;
+    display:none;
+}
+
+@media(max-width:900px){
+
+.stats{
+grid-template-columns:1fr 1fr;
+}
+
+.requests{
+grid-template-columns:1fr;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<div class="logo">
+SUN SON SOLAR
+</div>
+
+<div class="profile">
+
+<div class="avatar">👨‍💼</div>
+
+<h3>Administrator</h3>
+
+</div>
+
+<div class="menu">
+
+<a href="#dashboard">🏠 Dashboard</a>
+<a href="#users">👥 Users</a>
+<a href="#schedule">📅 Schedule</a>
+<a href="#requests">📋 Requests</a>
+<a href="#settings">⚙ Settings</a>
+<a href="#" onclick="openAccount()">👤 My Account</a>
+
+</div>
+
+</div>
+
+<div class="main">
+
+<div class="topbar">
+
+<div>
+
+<h1>Admin Dashboard</h1>
+<p>Manage Sun Son Solar operations</p>
+
+</div>
+
+<button class="notification-btn"
+onclick="toggleNotifications()">
+🔔
+</button>
+
+</div>
+
+<div class="hero" id="dashboard">
+
+<h1>Administrator Control Center</h1>
+
+<p>
+Manage customers, employees, schedules,
+service requests and business settings.
+</p>
+
+</div>
+
+<div class="stats">
+
+<div class="card">
+<h2>520</h2>
+<p>Customers</p>
+</div>
+
+<div class="card">
+<h2>28</h2>
+<p>Employees</p>
+</div>
+
+<div class="card">
+<h2>47</h2>
+<p>Pending Requests</p>
+</div>
+
+<div class="card">
+<h2>₱980,000</h2>
+<p>Revenue</p>
+</div>
+
+</div>
+
+<div class="section" id="users">
+
+<h2>User Management</h2>
+
+<button class="btn primary"
+onclick="openAddEmployee()">
++ Add Employee
+</button>
+
+<br><br>
+
+<table id="userTable">
+
+<tr>
+<th>Name</th>
+<th>Role</th>
+<th>Status</th>
+<th>Actions</th>
+</tr>
+
+<tr>
+<td>John Reyes</td>
+<td>Employee</td>
+<td>Active</td>
+
+<td>
+
+<button class="btn view"
+onclick="viewUser(this)">
+View
+</button>
+
+<button class="btn edit"
+onclick="editUser(this)">
+Edit
+</button>
+
+<button class="btn delete"
+onclick="deactivateUser(this)">
+Deactivate
+</button>
+
+</td>
+
+</tr>
+
+</table>
+
+</div>
+
+<div class="section" id="schedule">
+
+<h2>Schedule Overview</h2>
+
+<input type="date">
+
+<table>
+
+<tr>
+<th>Date</th>
+<th>Customer</th>
+<th>Technician</th>
+</tr>
+
+<tr>
+<td>10/25/2026</td>
+<td>Juan Dela Cruz</td>
+<td>John Reyes</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="section" id="requests">
+
+<h2>Service Requests</h2>
+
+<div class="requests">
+
+<div class="request">
+
+<h3>Installation Request</h3>
+
+<p>Customer: Juan Dela Cruz</p>
+
+<br>
+
+<button class="btn primary"
+onclick="approveRequest(this)">
+Approve
+</button>
+
+<button class="btn delete"
+onclick="declineRequest(this)">
+Decline
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="section" id="settings">
+
+<h2>System Settings</h2>
+
+<label>Service Category</label>
+
+<select id="category">
+<option>Installation</option>
+<option>Maintenance</option>
+<option>Consultation</option>
+</select>
+
+<label>Service Price</label>
+
+<input
+type="number"
+id="price"
+value="20000">
+
+<button
+class="btn primary"
+onclick="saveSettings()">
+
+Save Settings
+
+</button>
+
+</div>
+
+</div>
+
+<div class="modal"
+id="employeeModal">
+
+<div class="modal-content">
+
+<h2>Add Employee</h2>
+
+<input
+type="text"
+id="empName"
+placeholder="Employee Name">
+
+<input
+type="text"
+id="empRole"
+placeholder="Role">
+
+<button
+class="btn primary"
+onclick="saveEmployee()">
+Save
+</button>
+
+<button
+class="btn delete"
+onclick="closeEmployee()">
+Cancel
+</button>
+
+</div>
+
+</div>
+
+<div class="modal"
+id="viewModal">
+
+<div class="modal-content">
+
+<h2>User Information</h2>
+
+<div id="viewContent"></div>
+
+<br>
+
+<button
+class="btn primary"
+onclick="closeView()">
+Close
+</button>
+
+</div>
+
+</div>
+
+<div
+class="sidepanel"
+id="notificationPanel">
+
+<h2>Notifications</h2>
+
+<hr><br>
+
+<p>🔔 New Employee Added</p>
+<br>
+<p>📅 Schedule Updated</p>
+<br>
+<p>📋 New Customer Request</p>
+
+</div>
+
+<div
+class="sidepanel"
+id="accountPanel">
+
+<h2>My Account</h2>
+
+<hr><br>
+
+<p><strong>Name:</strong> Administrator</p>
+<p><strong>Role:</strong> Admin</p>
+<p><strong>Email:</strong> admin@sunsonsolar.com</p>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+
+function showToast(message){
+
+    let toast =
+    document.getElementById("toast");
+
+    toast.innerHTML = message;
+
+    toast.style.display = "block";
+
+    setTimeout(() => {
+
+        toast.style.display = "none";
+
+    },3000);
+
+}
+
+function openAddEmployee(){
+
+    document
+    .getElementById("employeeModal")
+    .classList.add("show");
+
+}
+
+function closeEmployee(){
+
+    document
+    .getElementById("employeeModal")
+    .classList.remove("show");
+
+}
+
+function saveEmployee(){
+
+    const employeeData = {
+
+        fullname:
+        document.getElementById("empName").value,
+
+        role:
+        document.getElementById("empRole").value
+
+    };
+
+    console.log(
+        "Send Employee To Database",
+        employeeData
+    );
+
+    showToast(
+        "Employee Ready For Database"
+    );
+
+    closeEmployee();
+
+}
+
+function viewUser(btn){
+
+    const row =
+    btn.parentElement.parentElement;
+
+    const userID =
+    row.dataset.id || "1";
+
+    document.getElementById(
+        "viewContent"
+    ).innerHTML = `
+
+    <p>
+        User ID:
+        ${userID}
+    </p>
+
+    <p>
+        Data will come from database.
+    </p>
+
+    `;
+
+    document
+    .getElementById("viewModal")
+    .classList.add("show");
+
+}
+
+function closeView(){
+
+    document
+    .getElementById("viewModal")
+    .classList.remove("show");
+
+}
+
+function editUser(btn){
+
+    const row =
+    btn.parentElement.parentElement;
+
+    const userID =
+    row.dataset.id || "1";
+
+    showToast(
+        "Edit User API Placeholder"
+    );
+
+}
+
+function deactivateUser(btn){
+
+    const row =
+    btn.parentElement.parentElement;
+
+    const userID =
+    row.dataset.id || "1";
+
+    showToast(
+        "Deactivate User API Placeholder"
+    );
+
+}
+
+function loadDashboardStats(){
+
+    console.log(
+        "Load Dashboard Stats"
+    );
+
+}
+
+function loadEmployees(){
+
+    console.log(
+        "Load Employees"
+    );
+
+}
+
+function loadSchedules(){
+
+    console.log(
+        "Load Schedule Data"
+    );
+
+}
+
+function approveRequest(requestID){
+
+    showToast(
+        "Request Approval API Placeholder"
+    );
+
+}
+
+function declineRequest(requestID){
+
+    showToast(
+        "Request Decline API Placeholder"
+    );
+
+}
+
+function toggleNotifications(){
+
+    document
+    .getElementById("notificationPanel")
+    .classList.toggle("show");
+
+}
+
+function loadNotifications(){
+
+    console.log(
+        "Load Notifications"
+    );
+
+}
+
+function openAccount(){
+
+    document
+    .getElementById("accountPanel")
+    .classList.toggle("show");
+
+}
+
+function loadProfile(){
+
+    console.log(
+        "Load User Profile"
+    );
+
+}
+
+function saveSettings(){
+
+    const settingsData = {
+
+        category:
+        document.getElementById(
+            "category"
+        ).value,
+
+        price:
+        document.getElementById(
+            "price"
+        ).value
+
+    };
+
+    console.log(
+        settingsData
+    );
+
+    showToast(
+        "Settings Ready For Database"
+    );
+
+}
+
+function loadAnalytics(){
+
+    console.log(
+        "Load Analytics"
+    );
+
+}
+
+window.onload = function(){
+
+    loadDashboardStats();
+
+    loadEmployees();
+
+    loadSchedules();
+
+    loadNotifications();
+
+    loadProfile();
+
+    loadAnalytics();
+
+};
+
+</script>
+
+</body>
+</html>
+```

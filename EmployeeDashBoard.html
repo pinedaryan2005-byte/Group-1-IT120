@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sun Son Solar | Employee Dashboard</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Tahoma,sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:linear-gradient(135deg,#ffd56b,#ff9a56,#ff6f91);
+}
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:260px;
+    height:100vh;
+    background:linear-gradient(180deg,#ff6a00,#ee0979);
+    padding:20px;
+    color:white;
+    overflow-y:auto;
+}
+
+.logo{
+    text-align:center;
+    font-size:2rem;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+
+.profile{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.avatar{
+    width:80px;
+    height:80px;
+    margin:auto;
+    border-radius:50%;
+    background:#fff7a8;
+    color:#ff6a00;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:2rem;
+    margin-bottom:10px;
+}
+
+.menu a{
+    display:block;
+    color:white;
+    text-decoration:none;
+    padding:12px;
+    border-radius:10px;
+    margin-bottom:8px;
+}
+
+.menu a:hover{
+    background:rgba(255,255,255,.2);
+}
+
+.main{
+    margin-left:260px;
+    padding:25px;
+}
+
+.topbar{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.top-btn{
+    width:50px;
+    height:50px;
+    border:none;
+    border-radius:50%;
+    background:#ff6a00;
+    color:white;
+    cursor:pointer;
+    font-size:18px;
+}
+
+.hero{
+    margin-top:20px;
+    padding:40px;
+    border-radius:20px;
+    color:white;
+    background:
+    linear-gradient(rgba(0,0,0,.4),rgba(0,0,0,.4)),
+    url('panelbg.png');
+    background-size:cover;
+}
+
+.hero h1{
+    margin-bottom:10px;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+    margin-top:20px;
+}
+
+.card{
+    background:white;
+    border-radius:15px;
+    padding:20px;
+}
+
+.card h2{
+    color:#ff6a00;
+}
+
+.section{
+    margin-top:25px;
+    background:white;
+    border-radius:15px;
+    padding:25px;
+}
+
+.section h2{
+    margin-bottom:15px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.job-card{
+    border:1px solid #eee;
+    border-radius:15px;
+    padding:20px;
+}
+
+.job-card h3{
+    color:#ee0979;
+    margin-bottom:10px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,td{
+    padding:12px;
+    border-bottom:1px solid #eee;
+}
+
+th{
+    background:#fff4e9;
+}
+
+.btn{
+    border:none;
+    padding:10px 15px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.primary{
+    background:#fdfd96;
+}
+
+.danger{
+    background:#ffd6d6;
+}
+
+.success{
+    background:#d4edda;
+}
+
+textarea,
+input,
+select{
+    width:100%;
+    padding:12px;
+    border:1px solid #ddd;
+    border-radius:8px;
+    margin-top:10px;
+    margin-bottom:15px;
+}
+
+.sidepanel{
+    position:fixed;
+    right:-350px;
+    top:0;
+    width:350px;
+    height:100%;
+    background:white;
+    transition:.3s;
+    box-shadow:-5px 0 20px rgba(0,0,0,.2);
+    padding:20px;
+    overflow-y:auto;
+}
+
+.sidepanel.show{
+    right:0;
+}
+
+.toast{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    background:#28a745;
+    color:white;
+    padding:15px;
+    border-radius:10px;
+    display:none;
+}
+
+footer{
+    text-align:center;
+    padding:20px;
+}
+
+@media(max-width:900px){
+
+.stats{
+    grid-template-columns:1fr 1fr;
+}
+
+.grid{
+    grid-template-columns:1fr;
+}
+
+}
+
+@media(max-width:768px){
+
+.sidebar{
+    position:relative;
+    width:100%;
+    height:auto;
+}
+
+.main{
+    margin-left:0;
+}
+
+.stats{
+    grid-template-columns:1fr;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<div class="logo">
+SUN SON SOLAR
+</div>
+
+<div class="profile">
+
+<div class="avatar">👷</div>
+
+<h3>Employee</h3>
+<p>Field Technician</p>
+
+</div>
+
+<div class="menu">
+
+<a href="#dashboard">🏠 Dashboard</a>
+
+<a href="#schedule">📅 Schedule Management</a>
+
+<a href="#jobs">🔧 Assigned Jobs</a>
+
+<a href="#requests">👥 Customer Requests</a>
+
+<a href="javascript:void(0)"
+onclick="toggleNotifications()">
+🔔 Notifications
+</a>
+
+<a href="#reports">📄 Service Reports</a>
+
+<a href="#history">🕒 Work History</a>
+
+<a href="#support">💬 Support Center</a>
+
+<a href="javascript:void(0)"
+onclick="toggleAccount()">
+👤 My Account
+</a>
+
+<a href="Homepage.html">
+⇦ Logout
+</a>
+
+</div>
+
+</div>
+
+<div class="main">
+
+<div class="topbar">
+
+<div>
+<h1>Employee Dashboard</h1>
+<p>Manage assigned jobs and customer services.</p>
+</div>
+
+<button class="top-btn"
+onclick="toggleNotifications()">
+🔔
+</button>
+
+</div>
+
+<div class="hero" id="dashboard">
+
+<h1>Operations Center</h1>
+
+<p>
+Manage schedules, assigned jobs,
+reports, customer requests and support tickets.
+</p>
+
+</div>
+
+<div class="stats">
+
+<div class="card">
+<h2 id="assignedJobs">0</h2>
+<p>Assigned Jobs</p>
+</div>
+
+<div class="card">
+<h2 id="todaySchedule">0</h2>
+<p>Schedules Today</p>
+</div>
+
+<div class="card">
+<h2 id="completedTasks">0</h2>
+<p>Completed Tasks</p>
+</div>
+
+<div class="card">
+<h2 id="pendingReports">0</h2>
+<p>Pending Reports</p>
+</div>
+
+</div>
+
+<div class="section" id="schedule">
+
+<h2>Schedule Management</h2>
+
+<table>
+
+<tr>
+<th>Date</th>
+<th>Customer</th>
+<th>Service</th>
+</tr>
+
+<tr>
+<td>Oct 25, 2026</td>
+<td>Juan Dela Cruz</td>
+<td>Installation</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="section" id="jobs">
+
+<h2>Assigned Jobs</h2>
+
+<div class="grid">
+
+<div class="job-card">
+
+<h3>Solar Installation</h3>
+
+<p>Customer: Juan Dela Cruz</p>
+<p>Status: Pending</p>
+
+<br>
+
+<button
+class="btn primary"
+onclick="updateJobStatus(1)">
+Update Status
+</button>
+
+</div>
+
+<div class="job-card">
+
+<h3>Maintenance</h3>
+
+<p>Customer: Maria Santos</p>
+<p>Status: Assigned</p>
+
+<br>
+
+<button
+class="btn primary"
+onclick="updateJobStatus(2)">
+Update Status
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="section" id="requests">
+
+<h2>Customer Requests</h2>
+
+<div class="grid">
+
+<div class="job-card">
+
+<h3>Inspection Request</h3>
+
+<p>Customer: Pedro Cruz</p>
+
+<br>
+
+<button
+class="btn success"
+onclick="acceptRequest(1)">
+Accept
+</button>
+
+<button
+class="btn danger"
+onclick="declineRequest(1)">
+Decline
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="section" id="reports">
+
+<h2>Service Reports</h2>
+
+<textarea
+id="reportText"
+placeholder="Write report..."></textarea>
+
+<button
+class="btn primary"
+onclick="submitReport()">
+Submit Report
+</button>
+
+</div>
+
+<div class="section" id="history">
+
+<h2>Work History</h2>
+
+<table>
+
+<tr>
+<th>Date</th>
+<th>Service</th>
+<th>Status</th>
+</tr>
+
+<tr>
+<td>Oct 10</td>
+<td>Installation</td>
+<td>Completed</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="section" id="support">
+
+<h2>Support Center</h2>
+
+<textarea
+id="supportMessage"
+placeholder="Describe your concern..."></textarea>
+
+<button
+class="btn primary"
+onclick="sendSupportTicket()">
+Submit Ticket
+</button>
+
+</div>
+
+<footer>
+© 2026 Sun Son Solar
+</footer>
+
+</div>
+
+<div
+class="sidepanel"
+id="notificationPanel">
+
+<h2>Notifications</h2>
+
+<hr><br>
+
+<p>🔔 New Job Assigned</p><br>
+<p>📅 Schedule Updated</p><br>
+<p>✅ Report Approved</p><br>
+
+</div>
+
+<div
+class="sidepanel"
+id="accountPanel">
+
+<h2>My Account</h2>
+
+<hr><br>
+
+<p><strong>Name:</strong> Employee</p>
+
+<p><strong>Role:</strong> Technician</p>
+
+<p><strong>Email:</strong> employee@sunsonsolar.com</p>
+
+<br>
+
+<button
+class="btn primary"
+onclick="changePassword()">
+Change Password
+</button>
+
+</div>
+
+<div
+class="toast"
+id="toast">
+</div>
+
+<script>
+
+function showToast(message){
+
+let toast =
+document.getElementById("toast");
+
+toast.innerHTML =
+message;
+
+toast.style.display =
+"block";
+
+setTimeout(()=>{
+
+toast.style.display =
+"none";
+
+},3000);
+
+}
+
+function toggleNotifications(){
+
+document
+.getElementById("notificationPanel")
+.classList.toggle("show");
+
+}
+
+function toggleAccount(){
+
+document
+.getElementById("accountPanel")
+.classList.toggle("show");
+
+}
+
+function updateJobStatus(jobId){
+
+console.log("Update Job",jobId);
+
+showToast(
+"Job Status Ready For Database"
+);
+
+}
+
+function acceptRequest(requestId){
+
+console.log(requestId);
+
+showToast(
+"Request Accepted"
+);
+
+}
+
+function declineRequest(requestId){
+
+console.log(requestId);
+
+showToast(
+"Request Declined"
+);
+
+}
+
+function submitReport(){
+
+const reportData = {
+
+report:
+document
+.getElementById(
+"reportText"
+).value
+
+};
+
+console.log(reportData);
+
+showToast(
+"Report Ready For Database"
+);
+
+}
+
+function sendSupportTicket(){
+
+const supportData = {
+
+message:
+document
+.getElementById(
+"supportMessage"
+).value
+
+};
+
+console.log(supportData);
+
+showToast(
+"Support Ticket Ready For Database"
+);
+
+}
+
+function changePassword(){
+
+showToast(
+"Password Change Ready"
+);
+
+}
+
+function loadDashboardStats(){
+
+document.getElementById(
+"assignedJobs").innerText = 12;
+
+document.getElementById(
+"todaySchedule").innerText = 5;
+
+document.getElementById(
+"completedTasks").innerText = 48;
+
+document.getElementById(
+"pendingReports").innerText = 7;
+
+}
+
+window.onload = function(){
+
+loadDashboardStats();
+
+};
+
+</script>
+
+</body>
+
+</html>
